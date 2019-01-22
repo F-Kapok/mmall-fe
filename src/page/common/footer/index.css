@@ -1,0 +1,23 @@
+/*
+* @Author: Kapok
+* @Date:   2019-01-22 13:42:39
+* @Last Modified by:   Kapok
+* @Last Modified time: 2019-01-22 13:43:21
+*/
+.footer{
+    margin-top: 20px;
+    padding-bottom: 10px;
+}
+.footer .links{
+    text-align: center;
+    color: #666;
+    line-height: 30px;
+}
+.footer .links .link{
+    padding: 0 10px;
+}
+.footer .copyright{
+    text-align: center;
+    color: #666;
+    line-height: 30px;
+}

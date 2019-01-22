@@ -1,0 +1,18 @@
+/*
+* @Author: Kapok
+* @Date:   2019-01-22 13:30:21
+* @Last Modified by:   Kapok
+* @Last Modified time: 2019-01-22 15:09:16
+*/
+.nav-simple{
+    height: 60px;
+    line-height: 60px;
+    border-bottom: 1px solid #ddd;
+    background: #fff;
+}
+.nav-simple .logo{
+    font-size: 26px;
+    font-weight: bold;
+    color: #c60023;
+    text-decoration: none;
+}
