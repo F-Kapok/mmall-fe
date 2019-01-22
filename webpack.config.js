@@ -2,7 +2,7 @@
  * @Author: Kapok
  * @Date:   2019-01-21 10:37:06
  * @Last Modified by:   Kapok
- * @Last Modified time: 2019-01-22 15:10:40
+ * @Last Modified time: 2019-01-22 17:24:03
  */
 
 'use strict';
@@ -29,6 +29,8 @@ var config = {
     entry: {
         'common': ['./src/page/common/index.js'],
         'index': ['./src/page/index/index.js'],
+        'user-login': ['./src/page/user-login/index.js'],
+        'user-register': ['./src/page/user-register/index.js'],
         'result': ['./src/page/result/index.js'],
     },
     output: {
@@ -55,8 +57,9 @@ var config = {
                     }]
                 })
             },
-            { test: /\.(gif|png|jpg|woff|svg|eot|ttf)\??.*$/, loader: 'url-loader?limit=100&name=resource/[name].[ext]' },
-            { test: /\.string$/, loader: 'html-loader' }
+            { test: /\.(gif|png|jpg|woff|svg|eot|ttf)\??.*$/, loader: 'url-loader?limit=10000&name=resource/[name].[ext]' },
+            { test: /\.string$/, loader: 'html-loader' },
+            { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" }
         ]
     },
     resolve: {
@@ -72,6 +75,8 @@ var config = {
     plugins: [
         new ExtractTextPlugin("css/[name].css"),
         new HtmlWebpackPlugin(getHtmlConfig('index', '首页')),
+        new HtmlWebpackPlugin(getHtmlConfig('user-login', '登录页面')),
+        new HtmlWebpackPlugin(getHtmlConfig('user-register', '注册页面')),
         new HtmlWebpackPlugin(getHtmlConfig('result', '操作结果')),
     ],
     //独立通用模块到js/common.js
