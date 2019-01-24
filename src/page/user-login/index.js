@@ -5,33 +5,36 @@
  * @Last Modified time: 2019-01-22 15:45:39
  */
 
+
 'use strict';
 require('./index.css');
 require('page/common/nav-simple/index.js');
 var _user = require('service/user-service.js');
 var _mm = require('util/mm.js');
+
 // 表单里的错误提示
 var formError = {
-    show: function(errMsg) {
+    show: function (errMsg) {
         $('.error-item').show().find('.err-msg').text(errMsg);
     },
-    hide: function() {
+    hide: function () {
         $('.error-item').hide().find('.err-msg').text('');
     }
 };
+
 // page 逻辑部分
 var page = {
-    init: function() {
+    init: function () {
         this.bindEvent();
     },
-    bindEvent: function() {
+    bindEvent: function () {
         var _this = this;
         // 登录按钮的点击
-        $('#submit').click(function() {
+        $('#submit').click(function () {
             _this.submit();
         });
         // 如果按下回车，也进行提交
-        $('.user-content').keyup(function(e) {
+        $('.user-content').keyup(function (e) {
             // keyCode == 13 表示回车键
             if (e.keyCode === 13) {
                 _this.submit();
@@ -39,7 +42,7 @@ var page = {
         });
     },
     // 提交表单
-    submit: function() {
+    submit: function () {
         var formData = {
                 username: $.trim($('#username').val()),
                 password: $.trim($('#password').val())
@@ -48,9 +51,9 @@ var page = {
             validateResult = this.formValidate(formData);
         // 验证成功
         if (validateResult.status) {
-            _user.login(formData, function(res) {
+            _user.login(formData, function (res) {
                 window.location.href = _mm.getUrlParam('redirect') || './index.html';
-            }, function(errMsg) {
+            }, function (errMsg) {
                 formError.show(errMsg);
             });
         }
@@ -62,7 +65,7 @@ var page = {
 
     },
     // 表单字段的验证
-    formValidate: function(formData) {
+    formValidate: function (formData) {
         var result = {
             status: false,
             msg: ''
@@ -81,6 +84,6 @@ var page = {
         return result;
     }
 };
-$(function() {
+$(function () {
     page.init();
 });

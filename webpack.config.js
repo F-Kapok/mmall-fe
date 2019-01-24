@@ -2,7 +2,7 @@
  * @Author: Kapok
  * @Date:   2019-01-21 10:37:06
  * @Last Modified by:   Kapok
- * @Last Modified time: 2019-01-22 17:24:03
+ * @Last Modified time: 2019-01-24 14:06:15
  */
 
 'use strict';
@@ -13,7 +13,7 @@ var WEBPACK_ENV = process.env.WEBPACK_ENV || 'dev';
 console.log(WEBPACK_ENV);
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 //获取HtmlWebpackPlugin参数方法
-var getHtmlConfig = function(name, title) {
+var getHtmlConfig = function (name, title) {
     return {
         template: './src/view/' + name + '.html',
         filename: 'view/' + name + '.html',
@@ -31,6 +31,10 @@ var config = {
         'index': ['./src/page/index/index.js'],
         'user-login': ['./src/page/user-login/index.js'],
         'user-register': ['./src/page/user-register/index.js'],
+        'user-pass-reset': ['./src/page/user-pass-reset/index.js'],
+        'user-pass-update': ['./src/page/user-pass-update/index.js'],
+        'user-center': ['./src/page/user-center/index.js'],
+        'user-center-update': ['./src/page/user-center-update/index.js'],
         'result': ['./src/page/result/index.js'],
     },
     output: {
@@ -44,22 +48,24 @@ var config = {
     module: { //我写一个module
         //配置一个rules(规则),rules是一个数组,里面包含一条一条的规则
         rules: [{
-                // test 表示测试什么文件类型
-                test: /\.css$/,
-                // 使用 'style-loader','css-loader'
-                use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: [{
-                        loader: 'css-loader',
-                        options: {
-                            url: false
-                        }
-                    }]
-                })
+            // test 表示测试什么文件类型
+            test: /\.css$/,
+            // 使用 'style-loader','css-loader'
+            use: ExtractTextPlugin.extract({
+                fallback: 'style-loader',
+                use: [{
+                    loader: 'css-loader',
+                    options: {
+                        url: false
+                    }
+                }]
+            })
+        },
+            {
+                test: /\.(eot|svg|ttf|woff|woff2)$/,
+                use: ['file-loader']
             },
-            { test: /\.(gif|png|jpg|woff|svg|eot|ttf)\??.*$/, loader: 'url-loader?limit=10000&name=resource/[name].[ext]' },
-            { test: /\.string$/, loader: 'html-loader' },
-            { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" }
+            {test: /\.string$/, loader: 'html-loader'},
         ]
     },
     resolve: {
@@ -77,6 +83,10 @@ var config = {
         new HtmlWebpackPlugin(getHtmlConfig('index', '首页')),
         new HtmlWebpackPlugin(getHtmlConfig('user-login', '登录页面')),
         new HtmlWebpackPlugin(getHtmlConfig('user-register', '注册页面')),
+        new HtmlWebpackPlugin(getHtmlConfig('user-pass-reset', '找回密码')),
+        new HtmlWebpackPlugin(getHtmlConfig('user-pass-update', '修改密码')),
+        new HtmlWebpackPlugin(getHtmlConfig('user-center', '个人信息')),
+        new HtmlWebpackPlugin(getHtmlConfig('user-center-update', '修改个人信息')),
         new HtmlWebpackPlugin(getHtmlConfig('result', '操作结果')),
     ],
     //独立通用模块到js/common.js
